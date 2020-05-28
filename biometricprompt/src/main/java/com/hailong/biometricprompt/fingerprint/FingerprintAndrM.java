@@ -2,13 +2,11 @@ package com.hailong.biometricprompt.fingerprint;
 
 import android.app.Activity;
 import android.content.Context;
-import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 import androidx.core.hardware.fingerprint.FingerprintManagerCompat;
 import androidx.core.os.CancellationSignal;
-import androidx.fragment.app.FragmentActivity;
 
 import com.hailong.biometricprompt.R;
 import com.hailong.biometricprompt.fingerprint.bean.VerificationDialogStyleBean;
@@ -103,15 +101,22 @@ public class FingerprintAndrM implements IFingerprint {
         @Override
         public void onAuthenticationError(int errMsgId, CharSequence errString) {
             super.onAuthenticationError(errMsgId, errString);
-            //errMsgId==5时，在OnDialogActionListener的onCancle回调中处理；！=5的报错，才需要显示在指纹验证框中。
-            if (errMsgId != 5)
-                fingerprintDialog.setTip(errString.toString(), R.color.biometricprompt_color_FF5555);
+            //errMsgId==5时，在OnDialogActionListener的onCancle回调中处理；!= 5 的报错，才需要显示在指纹验证框中。
+            if (errMsgId != 5) {
+                fingerprintDialog.setTip(errString.toString(), R.color.biometricprompt_color_666666);
+                fingerprintDialog.setFingerprintDrawableRes(R.drawable.biometricprompt_ic_error_finger_print);
+                // 尝试次数过多
+                if (errMsgId == 7) {
+                    fingerprintDialog.dismiss();
+                }
+                fingerprintCallback.onError(errMsgId, errString);
+            }
         }
 
         @Override
         public void onAuthenticationHelp(int helpMsgId, CharSequence helpString) {
             super.onAuthenticationHelp(helpMsgId, helpString);
-            fingerprintDialog.setTip(helpString.toString(), R.color.biometricprompt_color_FF5555);
+            fingerprintDialog.setTip(helpString.toString(), R.color.biometricprompt_color_666666);
         }
 
         @Override
@@ -125,7 +130,8 @@ public class FingerprintAndrM implements IFingerprint {
         @Override
         public void onAuthenticationFailed() {
             super.onAuthenticationFailed();
-            fingerprintDialog.setTip(context.getString(R.string.biometricprompt_verify_failed), R.color.biometricprompt_color_FF5555);
+            fingerprintDialog.setTip(context.getString(R.string.biometricprompt_verify_failed), R.color.biometricprompt_color_666666);
+            fingerprintDialog.setFingerprintDrawableRes(R.drawable.biometricprompt_ic_error_finger_print);
             fingerprintCallback.onFailed();
         }
     };

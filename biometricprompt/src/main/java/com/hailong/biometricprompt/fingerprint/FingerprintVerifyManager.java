@@ -1,18 +1,11 @@
 package com.hailong.biometricprompt.fingerprint;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.hardware.fingerprint.FingerprintManager;
-import android.provider.Settings;
 
 import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
-import androidx.core.hardware.fingerprint.FingerprintManagerCompat;
 
-import com.hailong.biometricprompt.R;
 import com.hailong.biometricprompt.fingerprint.bean.VerificationDialogStyleBean;
 import com.hailong.biometricprompt.uitls.AndrVersionUtil;
 
@@ -24,10 +17,11 @@ public class FingerprintVerifyManager {
     public FingerprintVerifyManager(Builder builder) {
         IFingerprint fingerprint;
         if (AndrVersionUtil.isAboveAndrP()) {
-            if (builder.enableAndroidP)
+            if (builder.enableAndroidP) {
                 fingerprint = FingerprintAndrP.newInstance();
-            else
+            } else {
                 fingerprint = FingerprintAndrM.newInstance();
+            }
         } else if (AndrVersionUtil.isAboveAndrM()) {
             fingerprint = FingerprintAndrM.newInstance();
         } else {//Android 6.0 以下官方未开放指纹识别，某些机型自行支持的情况暂不做处理
@@ -45,10 +39,11 @@ public class FingerprintVerifyManager {
         VerificationDialogStyleBean bean = new VerificationDialogStyleBean();
         bean.setCancelTextColor(builder.cancelTextColor);
         bean.setUsepwdTextColor(builder.usepwdTextColor);
-        bean.setFingerprintColor(builder.fingerprintColor);
+        bean.setFingerprintDrawableRes(builder.fingerprintDrawableRes);
         bean.setUsepwdVisible(builder.usepwdVisible);
 
         // >= Android 9.0
+        bean.setTip(builder.tip);
         bean.setTitle(builder.title);
         bean.setSubTitle(builder.subTitle);
         bean.setDescription(builder.description);
@@ -69,11 +64,12 @@ public class FingerprintVerifyManager {
         /*可选字段*/
         private int cancelTextColor;
         private int usepwdTextColor;
-        private int fingerprintColor;
+        private int fingerprintDrawableRes;
         private boolean usepwdVisible;
 
         //在Android 9.0系统上，是否使用系统验证框
         private boolean enableAndroidP;
+        private String tip;
         private String title;
         private String subTitle;
         private String description;
@@ -119,12 +115,12 @@ public class FingerprintVerifyManager {
         }
 
         /**
-         * 指纹图标颜色
+         * 指纹图标
          *
-         * @param color
+         * @param fingerprintDrawableRes
          */
-        public Builder fingerprintColor(@ColorInt int color) {
-            this.fingerprintColor = color;
+        public Builder fingerprintDrawableRes(@DrawableRes int fingerprintDrawableRes) {
+            this.fingerprintDrawableRes = fingerprintDrawableRes;
             return this;
         }
 
@@ -145,6 +141,11 @@ public class FingerprintVerifyManager {
          */
         public Builder enableAndroidP(boolean enableAndroidP) {
             this.enableAndroidP = enableAndroidP;
+            return this;
+        }
+
+        public Builder tip(String tip) {
+            this.tip = tip;
             return this;
         }
 

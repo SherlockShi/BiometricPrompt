@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- 内部填充颜色 -->
+    <solid
+        android:color="@color/biometricprompt_color_F2F5F9" />
+
+    <!-- 描边 -->
+    <stroke
+        android:width="0dp"
+        android:color="@android:color/white" />
+
+    <!-- 圆角 -->
+    <corners
+        android:topLeftRadius="0dp"
+        android:topRightRadius="0dp"
+        android:bottomLeftRadius="14dp"
+        android:bottomRightRadius="14dp" />
+
+	<!-- 内边距 -->
+    <padding
+        android:left="0dp"
+        android:right="0dp"
+        android:top="0dp"
+        android:bottom="0dp" />
+
+</shape>

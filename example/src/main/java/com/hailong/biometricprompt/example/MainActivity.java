@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.widget.Toast;
 
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import com.hailong.biometricprompt.fingerprint.FingerprintCallback;
@@ -22,7 +21,8 @@ public class MainActivity extends FragmentActivity {
         findViewById(R.id.tvFingerprint).setOnClickListener(v -> {
             FingerprintVerifyManager.Builder builder = new FingerprintVerifyManager.Builder(MainActivity.this);
             builder.callback(fingerprintCallback)
-                    .fingerprintColor(ContextCompat.getColor(MainActivity.this, R.color.colorPrimary))
+                    .tip("请使用指纹登录到您的账户")
+                    .fingerprintDrawableRes(R.drawable.biometricprompt_ic_default_finger_print)
                     .build();
         });
     }
@@ -35,12 +35,17 @@ public class MainActivity extends FragmentActivity {
 
         @Override
         public void onFailed() {
-            Toast.makeText(MainActivity.this, getString(R.string.biometricprompt_verify_failed), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(MainActivity.this, getString(R.string.biometricprompt_verify_failed), Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onError(int errMsgId, CharSequence errString) {
+            Toast.makeText(MainActivity.this, errString, Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onUsepwd() {
-            Toast.makeText(MainActivity.this, getString(R.string.fingerprint_usepwd), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(MainActivity.this, getString(R.string.fingerprint_usepwd), Toast.LENGTH_SHORT).show();
         }
 
         @Override
@@ -71,6 +76,5 @@ public class MainActivity extends FragmentActivity {
                     ))
                     .create().show();
         }
-
     };
 }

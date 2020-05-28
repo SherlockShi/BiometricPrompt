@@ -11,7 +11,7 @@ public class VerificationDialogStyleBean {
      */
     private int cancelTextColor;
     private int usepwdTextColor;
-    private int fingerprintColor;
+    private int fingerprintDrawableRes;
     private boolean usepwdVisible;
 
     /**
@@ -19,6 +19,7 @@ public class VerificationDialogStyleBean {
      *
      * @return
      */
+    private String tip;
     private String title;
     private String subTitle;
     private String description;
@@ -40,12 +41,12 @@ public class VerificationDialogStyleBean {
         this.usepwdTextColor = usepwdTextColor;
     }
 
-    public int getFingerprintColor() {
-        return fingerprintColor;
+    public int getFingerprintDrawableRes() {
+        return fingerprintDrawableRes;
     }
 
-    public void setFingerprintColor(int fingerprintColor) {
-        this.fingerprintColor = fingerprintColor;
+    public void setFingerprintDrawableRes(int fingerprintDrawableRes) {
+        this.fingerprintDrawableRes = fingerprintDrawableRes;
     }
 
     public boolean isUsepwdVisible() {
@@ -54,6 +55,14 @@ public class VerificationDialogStyleBean {
 
     public void setUsepwdVisible(boolean usepwdVisible) {
         this.usepwdVisible = usepwdVisible;
+    }
+
+    public String getTip() {
+        return tip;
+    }
+
+    public void setTip(String tip) {
+        this.tip = tip;
     }
 
     public String getTitle() {

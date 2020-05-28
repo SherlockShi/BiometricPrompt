@@ -3,7 +3,6 @@ package com.hailong.biometricprompt.fingerprint;
 import android.app.Activity;
 import android.content.Context;
 import android.hardware.biometrics.BiometricPrompt;
-import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
 import android.os.CancellationSignal;
 import android.text.TextUtils;
@@ -47,10 +46,12 @@ public class FingerprintAndrP implements IFingerprint {
                 .setNegativeButton(cancelText, command -> {
                 }, (dialog, which) -> {
                 });
-        if (!TextUtils.isEmpty(verificationDialogStyleBean.getSubTitle()))
+        if (!TextUtils.isEmpty(verificationDialogStyleBean.getSubTitle())) {
             builder.setSubtitle(verificationDialogStyleBean.getSubTitle());
-        if (!TextUtils.isEmpty(verificationDialogStyleBean.getDescription()))
+        }
+        if (!TextUtils.isEmpty(verificationDialogStyleBean.getDescription())) {
             builder.setDescription(verificationDialogStyleBean.getDescription());
+        }
 
         //构建 BiometricPrompt
         BiometricPrompt biometricPrompt = builder.build();
@@ -109,15 +110,17 @@ public class FingerprintAndrP implements IFingerprint {
         @Override
         public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
             super.onAuthenticationSucceeded(result);
-            if (fingerprintCallback != null)
+            if (fingerprintCallback != null) {
                 fingerprintCallback.onSucceeded();
+            }
         }
 
         @Override
         public void onAuthenticationFailed() {
             super.onAuthenticationFailed();
-            if (fingerprintCallback != null)
+            if (fingerprintCallback != null) {
                 fingerprintCallback.onFailed();
+            }
         }
     };
 

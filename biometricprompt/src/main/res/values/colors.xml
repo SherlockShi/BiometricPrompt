@@ -5,4 +5,7 @@
     <color name="biometricprompt_color_333333">#333333</color>
     <color name="biometricprompt_color_82C785">#82C785</color>
     <color name="biometricprompt_color_FF5555">#FF5555</color>
+    <color name="biometricprompt_color_666666">#666666</color>
+    <color name="biometricprompt_color_F2F5F9">#F2F5F9</color>
+    <color name="biometricprompt_color_3186FF">#3186FF</color>
 </resources>
