@@ -27,11 +27,6 @@ public interface FingerprintCallback {
     void onFailed();
 
     /**
-     * 验证出错
-     */
-    void onError(int errMsgId, CharSequence errString);
-
-    /**
      * 密码登录
      */
     void onUsepwd();

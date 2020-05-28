@@ -3,6 +3,7 @@ package com.hailong.biometricprompt.fingerprint;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
+import android.os.Handler;
 
 import androidx.annotation.RequiresApi;
 import androidx.core.hardware.fingerprint.FingerprintManagerCompat;
@@ -107,9 +108,13 @@ public class FingerprintAndrM implements IFingerprint {
                 fingerprintDialog.setFingerprintDrawableRes(R.drawable.biometricprompt_ic_error_finger_print);
                 // 尝试次数过多
                 if (errMsgId == 7) {
-                    fingerprintDialog.dismiss();
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            fingerprintDialog.dismiss();
+                        }
+                    }, 1500);
                 }
-                fingerprintCallback.onError(errMsgId, errString);
             }
         }
 

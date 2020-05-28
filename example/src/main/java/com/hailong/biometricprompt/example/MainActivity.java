@@ -39,11 +39,6 @@ public class MainActivity extends FragmentActivity {
         }
 
         @Override
-        public void onError(int errMsgId, CharSequence errString) {
-            Toast.makeText(MainActivity.this, errString, Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
         public void onUsepwd() {
 //            Toast.makeText(MainActivity.this, getString(R.string.fingerprint_usepwd), Toast.LENGTH_SHORT).show();
         }

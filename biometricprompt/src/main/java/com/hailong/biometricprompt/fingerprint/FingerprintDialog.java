@@ -123,7 +123,7 @@ public class FingerprintDialog extends DialogFragment {
      * @param colorId
      */
     public void setTip(String tip, @ColorRes int colorId) {
-        if (tvTip == null) {
+        if (tvTip == null || !isAdded()) {
             return;
         }
         tvTip.setText(tip);
