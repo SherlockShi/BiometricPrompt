@@ -30,7 +30,7 @@
 
 ```
 dependencies {
-        implementation 'com.github.ZuoHailong:BiometricPrompt:2.0'
+        implementation 'com.github.SherlockShi:BiometricPrompt:2.0'
 }
 	
 ```
