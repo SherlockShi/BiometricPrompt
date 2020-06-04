@@ -30,7 +30,7 @@
 
 ```
 dependencies {
-        implementation 'com.github.SherlockShi:BiometricPrompt:2.1.0'
+        implementation 'com.github.SherlockShi:BiometricPrompt:2.2.0'
 }
 	
 ```

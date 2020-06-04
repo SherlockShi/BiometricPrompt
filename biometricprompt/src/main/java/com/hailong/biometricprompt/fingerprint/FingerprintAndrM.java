@@ -104,7 +104,7 @@ public class FingerprintAndrM implements IFingerprint {
             super.onAuthenticationError(errMsgId, errString);
             //errMsgId==5时，在OnDialogActionListener的onCancle回调中处理；!= 5 的报错，才需要显示在指纹验证框中。
             if (errMsgId != 5) {
-                fingerprintDialog.setTip(errString.toString(), R.color.biometricprompt_color_666666);
+                fingerprintDialog.setTipWithShake(errString.toString(), R.color.biometricprompt_color_666666);
                 fingerprintDialog.setFingerprintDrawableRes(R.drawable.biometricprompt_ic_error_finger_print);
                 // 尝试次数过多
                 if (errMsgId == 7) {
@@ -135,7 +135,7 @@ public class FingerprintAndrM implements IFingerprint {
         @Override
         public void onAuthenticationFailed() {
             super.onAuthenticationFailed();
-            fingerprintDialog.setTip(context.getString(R.string.biometricprompt_verify_failed), R.color.biometricprompt_color_666666);
+            fingerprintDialog.setTipWithShake(context.getString(R.string.biometricprompt_verify_failed), R.color.biometricprompt_color_666666);
             fingerprintDialog.setFingerprintDrawableRes(R.drawable.biometricprompt_ic_error_finger_print);
             fingerprintCallback.onFailed();
         }

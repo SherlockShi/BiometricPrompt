@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 
 import com.hailong.biometricprompt.R;
 import com.hailong.biometricprompt.fingerprint.bean.VerificationDialogStyleBean;
+import com.hailong.biometricprompt.uitls.AnimationUtil;
 
 /**
  * Created by ZuoHailong on 2019/3/12.
@@ -132,6 +133,11 @@ public class FingerprintDialog extends DialogFragment {
         } else {
             tvTip.setTextColor(getResources().getColor(colorId));
         }
+    }
+
+    public void setTipWithShake(String tip, @ColorRes int colorId) {
+        setTip(tip, colorId);
+        tvTip.startAnimation(AnimationUtil.shake());
     }
 
     public void setFingerprintDrawableRes(int fingerprintDrawableRes) {
